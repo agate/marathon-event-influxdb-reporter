@@ -1,0 +1,10 @@
+{
+  "name": "marathon-event-influxdb-reporter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "influx": "^5.0.7",
+    "marathon-event-bus-client": "^0.1.7"
+  }
+}
