@@ -50,11 +50,11 @@ const eventTypes = [
 ];
 
 const generalEventHandler = function (eventType, data) {
-  let tags = { eventType: data.eventType };
+  let tags = { eventType: eventType };
 
   let points = [
     {
-      measurement: `event_bus_${data.eventType}`,
+      measurement: 'events',
       tags: tags,
       fields: { value: 1 },
       timestamp: `${new Date(data.timestamp).getTime()}000000`
@@ -130,8 +130,9 @@ const generalEventHandler = function (eventType, data) {
   } else if (eventType == "deployment_info" || eventType == "deployment_step_success" || eventType == "deployment_step_failure") {
     points = data.currentStep.actions.map(function (action) {
       return {
-        measurement: `event_bus_${data.eventType}`,
+        measurement: 'events',
         tags: {
+          eventType: eventType,
           plan_id: data.plan.id,
           plan_steps: JSON.stringify(data.plan.steps),
           plan_currentStep: JSON.stringify(data.currentStep),
